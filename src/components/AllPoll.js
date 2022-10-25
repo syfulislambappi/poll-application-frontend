@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Container, ListGroup, ListGroupItem } from "reactstrap";
 import getData from "../utils/getData";
 
 const AllPoll = () => {
   const [polls, setPolls] = useState([]);
+
+  // Get all poll
   useEffect(() => {
     const uri = `http://localhost:4000/api/v1/poll`;
     (async () => {
@@ -22,7 +25,7 @@ const AllPoll = () => {
             key={poll?._id}
             style={{ fontWeight: "bold" }}
           >
-            {poll?.title}
+            <Link to={"../poll/" + poll.pollId}>{poll?.title}</Link>
           </ListGroupItem>
         ))}
       </ListGroup>
